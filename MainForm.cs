@@ -10,31 +10,26 @@ namespace POS_Restaurante_Buffet
             InitializeComponent();
         }
 
-        private void btnGestionPrecios_Click(object sender, EventArgs e)
+        private void OpenChildForm(Form childForm)
         {
             try
             {
-                // Verificar si el childPanel no es null antes de acceder a Tag
                 if (childPanel != null)
                 {
-                    // Verificar si ya existe una instancia de GestionPrecios en el Tag
-                    if (childPanel.Tag is GestionPrecios gestionPreciosForm)
-                    {
-                        // Si la instancia ya existe y no está visible, la mostramos
-                        if (!gestionPreciosForm.Visible)
-                        {
-                            gestionPreciosForm.Show();
-                        }
-                    }
-                    else
-                    {
-                        // Si no existe la instancia, la creamos
-                        gestionPreciosForm = new GestionPrecios();
-                        ConfigureChildForm(gestionPreciosForm);
-                        childPanel.Controls.Add(gestionPreciosForm);
-                        childPanel.Tag = gestionPreciosForm;
-                        gestionPreciosForm.Show();
-                    }
+                    // Limpiar controles anteriores
+                    childPanel.Controls.Clear();
+
+                    // Configurar el nuevo formulario hijo
+                    childForm.TopLevel = false;
+                    childForm.FormBorderStyle = FormBorderStyle.None;
+                    childForm.Dock = DockStyle.Fill;
+
+                    // Agregar al panel
+                    childPanel.Controls.Add(childForm);
+                    childPanel.Tag = childForm;
+
+                    // Mostrar formulario
+                    childForm.Show();
                 }
                 else
                 {
@@ -43,17 +38,20 @@ namespace POS_Restaurante_Buffet
             }
             catch (Exception ex)
             {
-                // Manejo de excepciones
-                MessageBox.Show($"Error al manejar el formulario: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error al abrir el formulario hijo: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        // Método para configurar el formulario como hijo del MainForm
-        private void ConfigureChildForm(GestionPrecios form)
+        private void btnGestionPrecios_Click(object sender, EventArgs e)
         {
-            form.TopLevel = false;
-            form.FormBorderStyle = FormBorderStyle.None;
-            form.Dock = DockStyle.Fill;
+            GestionPrecios gestionPreciosForm = new GestionPrecios();
+            OpenChildForm(gestionPreciosForm);
+        }
+
+        private void btnCaja_Click(object sender, EventArgs e)
+        {
+            CajaForm cajaForm = new CajaForm();
+            OpenChildForm(cajaForm);
         }
     }
 }

@@ -30,10 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             sideBarPanel = new Panel();
+            btnCaja = new Button();
             btnGestionPrecios = new Button();
             Logo = new PictureBox();
             childPanel = new Panel();
-            btnCaja = new Button();
             sideBarPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Logo).BeginInit();
             SuspendLayout();
@@ -49,6 +49,17 @@
             sideBarPanel.Name = "sideBarPanel";
             sideBarPanel.Size = new Size(250, 450);
             sideBarPanel.TabIndex = 0;
+            // 
+            // btnCaja
+            // 
+            btnCaja.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCaja.Location = new Point(22, 112);
+            btnCaja.Name = "btnCaja";
+            btnCaja.Size = new Size(205, 35);
+            btnCaja.TabIndex = 2;
+            btnCaja.Text = "Caja";
+            btnCaja.UseVisualStyleBackColor = true;
+            btnCaja.Click += btnCaja_Click;
             // 
             // btnGestionPrecios
             // 
@@ -80,16 +91,6 @@
             childPanel.Name = "childPanel";
             childPanel.Size = new Size(550, 450);
             childPanel.TabIndex = 1;
-            // 
-            // btnCaja
-            // 
-            btnCaja.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnCaja.Location = new Point(22, 112);
-            btnCaja.Name = "btnCaja";
-            btnCaja.Size = new Size(205, 35);
-            btnCaja.TabIndex = 2;
-            btnCaja.Text = "Caja";
-            btnCaja.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
